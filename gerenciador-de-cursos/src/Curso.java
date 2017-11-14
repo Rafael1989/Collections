@@ -12,6 +12,9 @@ public class Curso {
 	private Set<Aluno> alunos = new HashSet<>();
 
 	public Curso(String nome, String instrutor) {
+		if(nome == null) {
+			throw new NullPointerException("Nome não pode ser nulo");
+		}
 		this.nome = nome;
 		this.instrutor = instrutor;
 	}
@@ -47,6 +50,20 @@ public class Curso {
 
 	public void matricula(Aluno aluno) {
 		this.alunos.add(aluno);
+	}
+	
+	public boolean estaMatriculado(Aluno aluno) {
+		return this.alunos.contains(aluno);
+	}
+	
+	@Override
+	public boolean equals(Object aluno) {
+		return this.nome.equals(((Aluno) aluno).getNome());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.nome.hashCode();
 	}
 	
 }
